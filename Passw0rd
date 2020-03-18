@@ -1,0 +1,69 @@
+package bootcamp3;
+
+import java.util.Scanner;
+
+public class Passw0rd {
+
+	public static final int PASSWORD_LENGTH = 8;
+
+	// main method
+	public static void main(String[] args) {
+
+		// calling scanner function for the input
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Input a password : ");
+		String s = sc.nextLine();
+
+		// loop for checking valid password
+		if (is_Valid_Password(s)) {
+			System.out.println("Password is valid: " + s);
+		} else {
+			System.out.println("Not a valid password: " + s);
+		}
+
+	}
+
+	public static boolean is_Valid_Password(String password) {
+		// statement to check password length is valid or not
+		if (password.length() > PASSWORD_LENGTH || password.length() < PASSWORD_LENGTH)
+			return false;
+
+		int charCount = 0;
+		int numCount = 0;
+		int s1 = 0;
+		for (int i = 0; i < password.length(); i++) {
+
+			char ch = password.charAt(i);
+
+			if (is_Numeric(ch))
+				numCount++;
+			else if (is_Letter(ch))
+				charCount++;
+			else if (is_Special(ch) != null) {
+				s1++;
+			} else
+				return false;
+		}
+
+		return (charCount >= 2 && numCount >= 2 && s1 == 1);
+	}
+
+	// special symbols case
+	public static String is_Special(char ch) {
+		return (".*[~!@#$%^&*()_-]*.");
+	}
+
+	// alphabet case
+	// changing to uppercase letters
+	public static boolean is_Letter(char ch) {
+		ch = Character.toUpperCase(ch);
+		return (ch >= 'A' && ch <= 'Z');
+	}
+
+	// number case
+	public static boolean is_Numeric(char ch) {
+		return (ch >= '0' && ch <= '9');
+
+	}
+
+}
