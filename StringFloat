@@ -1,0 +1,33 @@
+package bootcamp3;
+
+import java.util.Scanner;
+
+public class StringFloat {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//scanner function the input
+		System.out.print("S= ");
+		Scanner in = new Scanner(System.in);
+		String s = in.nextLine();
+
+		try
+		{
+			float r = new Float(s.substring(0, 4));
+			System.out.println("s=" +r);
+		}
+
+		catch(NumberFormatException ne)
+		{
+			System.out.println("r=0");
+		}
+
+		catch(Exception e)
+		{
+			Float r1=new Float(s.substring(0,3));
+			System.out.println("s=" + r1);
+		}
+	}
+
+}
